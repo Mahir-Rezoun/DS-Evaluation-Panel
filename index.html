@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Story Panel</title>
+    <style>
+        .panel {
+            width: 1800px;
+            height: 900px;
+            border: 1px solid #ccc;
+            position: relative;
+            /*text-align: center;*/
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination button {
+            width: 150px;
+            height: 50px;
+            margin: 0 10px;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .pagination button:hover {
+            overflow: visible;
+            white-space: normal;
+            word-wrap: break-word;
+            }
+
+        .pagination button.active {
+            background-color: #ccc;
+        }
+
+        .description {
+            margin-top: 100px;
+            padding: 10px;
+            text-align: left;
+            font-size: 18px;
+            font-style: ;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .rating-container label {
+            margin: 0 10px;
+        }
+
+        .rating-container input {
+            width: 40px;
+            height: 30px;
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        .submission-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="title">DATA STORY PANEL</div>
+        <div class="pagination">
+            <button class="arrow-left arrow">&lt;</button>
+            <button data-index="0" class="active" style="font-size: 14px;">Panel 1 with a Long Descriptive Name</button>
+            <button data-index="1" style="font-size: 12px;">Panel 2 with an Even Longer Descriptive Name</button>
+            <button data-index="2" style="font-size: 16px;">Panel 3</button>
+            <button data-index="3" style="font-size: 16px;">Panel 4</button>
+            <button data-index="4" style="font-size: 12px;">In Western European countries, sentiments tend to run in the opposite direction. In Sweden (82%), the Netherlands (74%), the UK (72%), Germany (62%), Spain (60%) and France (59%), majorities disagree that there are parts of other countries that belong to them.</button>
+            <button data-index="5" style="font-size: 12px;">Panel 6 with an Even Longer Descriptive Name</button>
+            <button data-index="6" style="font-size: 12px;">Panel 7 with an Even Longer Descriptive Name</button>
+            <button data-index="7" style="font-size: 12px;">Panel 8 with an Even Longer Descriptive Name</button>
+            <button data-index="8" style="font-size: 12px;">Panel 9 with an Even Longer Descriptive Name</button>
+            <button data-index="9" style="font-size: 12px;">Panel 10 with an Even Longer Descriptive Name</button>
+            <button class="arrow-right arrow">&gt;</button>
+        </div>
+        <div class="description">This is the description for Panel 1.</div>
+        <div class="image-container">
+            <img src="https://via.placeholder.com/600x300" alt="Panel Image">
+        </div>
+        <div class="rating-container">
+            <label>Rating 1: <input type="number" min="1" max="5" placeholder="1"></label>
+            <label>Rating 2: <input type="number" min="1" max="5" placeholder="2"></label>
+            <label>Rating 3: <input type="number" min="1" max="5" placeholder="3"></label>
+            <label>Rating 4: <input type="number" min="1" max="5" placeholder="4"></label>
+            <label>Rating 5: <input type="number" min="1" max="5" placeholder="5"></label>
+        </div>
+        <div class="submission-container">
+        <button id="submit-btn">Submit</button>
+        </div>
+        <div class="error-message">Please enter a value between 1 and 5.</div>
+    </div>
+
+    <script>
+        //title: 'Data Story Panel',
+        const panels = [
+            {
+                //title: 'Data Story Panel',
+                description: 'This is the description for Panel 1.',
+                imageUrl: 'https://via.placeholder.com/600x300'
+            },
+            {
+                //title: 'Data Story Panel 2',
+                description: 'This is the description for Panel 2.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+2'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 3.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 4.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'Europeans divided fover whether parts of neighboring countries belong to them % who that there are parts of neighboring countries that really belong to us.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 6.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 7.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 8.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 9.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            },
+            {
+                //title: 'Data Story Panel 3',
+                description: 'This is the description for Panel 10.',
+                imageUrl: 'https://via.placeholder.com/600x300?text=Panel+3'
+            }
+        ];
+
+        //const titleElement = document.querySelector('.title');
+        const descriptionElement = document.querySelector('.description');
+        const imageElement = document.querySelector('.image-container img');
+        const paginationButtons = document.querySelectorAll('.pagination button:not(.arrow)');
+        const prevButton = document.querySelector('.arrow-left');
+        const nextButton = document.querySelector('.arrow-right');
+        const ratingInputs = document.querySelectorAll('.rating-container input');
+        const errorMessage = document.querySelector('.error-message');
+        const submitBtn = document.getElementById('submit-btn');
+
+        let currentIndex = 0;
+
+        function updatePanel(index) {
+            const panel = panels[index];
+            //titleElement.textContent = panel.title;
+            descriptionElement.textContent = panel.description;
+            imageElement.src = panel.imageUrl;
+            imageElement.alt = `Panel ${index + 1} Image`;
+
+            paginationButtons.forEach(button => button.classList.remove('active'));
+            paginationButtons[index].classList.add('active');
+        }
+
+        paginationButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                currentIndex = index;
+                updatePanel(currentIndex);
+            });
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + panels.length) % panels.length;
+            updatePanel(currentIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % panels.length;
+            updatePanel(currentIndex);
+        });
+
+        ratingInputs.forEach(input => {
+            input.addEventListener('input', validateRating);
+        });
+
+        function validateRating() {
+            const isValid = Array.from(ratingInputs).every(input => {
+                const value = parseInt(input.value);
+                return value >= 1 && value <= 5 || input.value === '';
+            });
+
+            errorMessage.style.display = isValid ? 'none' : 'block';
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const ratings = Array.from(ratingInputs).map(input => parseInt(input.value) || 0);
+            console.log('Submitted ratings:', ratings);
+            alert('Ratings submitted!');
+        });
+
+        updatePanel(currentIndex);
+    </script>
+</body>
+</html>
